@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mixx Super App - Fintech UI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+:root{
+  --navy:#0B3A8C; --yellow:#FFCC00; --bg:#FFFFFF;
+  --tile-border:#D9DEE7; --tile-fill:#FFFFFF; --tile-fill-2:#F7F9FC;
+  --secondary:#5B6B88; --dot-active:#4A86C8; --dot-inactive:#DCE6F2;
+  --text-on-navy:#FFFFFF; --amount-on-navy:#FFCC00;
+  --radius-tile:16px; --radius-card:24px; --radius-banner:20px; --radius-btn:14px;
+  --shadow:0 2px 8px rgba(11,58,140,0.08);
+  --font:'Poppins',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:#EEF2F7;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;}
+.phone{width:390px;height:844px;background:var(--bg);border-radius:32px;overflow:hidden;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.25);}
+.status{height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;font-size:14px;font-weight:600;color:#fff;background:var(--navy);}
+.status .icons{display:flex;gap:6px;align-items:center;}
+.screen{position:absolute;top:44px;left:0;right:0;bottom:80px;overflow-y:auto;background:var(--bg);}
+/* Header */
+.header{background:var(--navy);height:110px;padding:14px 16px;display:flex;align-items:flex-start;justify-content:space-between;color:#fff;}
+.header-left{display:flex;align-items:center;gap:12px;}
+.hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer;}
+.hamburger span{width:22px;height:2.5px;background:#fff;border-radius:2px;}
+.greeting .welcome{color:var(--yellow);font-size:13px;font-weight:700;font-style:italic;}
+.greeting .name{color:#fff;font-size:20px;font-weight:600;}
+.header-right{display:flex;align-items:center;gap:14px;}
+.header-right i{color:#fff;width:24px;height:24px;cursor:pointer;}
+/* Hero card */
+.hero{margin:16px;background:var(--navy);border-radius:var(--radius-card);height:220px;padding:20px;position:relative;overflow:hidden;color:#fff;}
+.hero .logo{font-size:26px;font-weight:800;font-style:italic;color:var(--yellow);display:flex;align-items:baseline;gap:4px;}
+.hero .logo .by{font-size:11px;font-weight:500;color:#fff;font-style:normal;opacity:.8;}
+.hero .balance-label{position:absolute;bottom:70px;left:20px;font-size:12px;color:#fff;opacity:.85;}
+.hero .balance-amount{position:absolute;bottom:30px;left:20px;font-size:36px;font-weight:800;color:var(--yellow);}
+.hero .actions{position:absolute;bottom:30px;right:20px;display:flex;gap:12px;}
+.hero .actions button{width:42px;height:42px;border-radius:12px;background:transparent;border:1.5px solid #fff;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s;}
+.hero .actions button:hover{background:rgba(255,255,255,.15);}
+/* Dots */
+.dots{display:flex;justify-content:center;gap:12px;margin:12px 0 20px;}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--dot-inactive);}
+.dot.active{background:var(--dot-active);}
+/* Section title */
+.section-title{padding:0 16px 8px;font-size:15px;font-weight:700;color:var(--navy);}
+/* Service grid */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:0 16px 20px;}
+.tile{display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;}
+.tile-box{width:70px;height:70px;border-radius:var(--radius-tile);background:var(--tile-fill);border:1px solid var(--tile-border);box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;color:var(--navy);transition:.2s;}
+.tile-box:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(11,58,140,.12);}
+.tile-box i{width:32px;height:32px;stroke-width:2;}
+.tile-label{font-size:13px;font-weight:500;color:var(--navy);text-align:center;max-width:80px;line-height:1.2;}
+/* Promo banner */
+.banner{margin:0 16px 20px;height:180px;border-radius:var(--radius-banner);overflow:hidden;box-shadow:var(--shadow);display:flex;position:relative;}
+.banner-left{width:45%;background:var(--yellow);display:flex;flex-direction:column;justify-content:center;padding:16px;position:relative;clip-path:polygon(0 0, 85% 0, 100% 100%, 0 100%);}
+.banner-left .small{font-size:12px;font-weight:700;font-style:italic;color:var(--navy);}
+.banner-left .big{font-size:34px;font-weight:800;font-style:italic;color:var(--navy);line-height:1;}
+.banner-left .med{font-size:16px;font-weight:600;color:var(--navy);}
+.banner-right{flex:1;background:#ccc;position:relative;overflow:hidden;}
+.banner-right img{width:100%;height:100%;object-fit:cover;}
+/* Bottom nav */
+.bottomnav{position:absolute;bottom:0;left:0;right:0;height:80px;background:var(--navy);border-top-left-radius:24px;border-top-right-radius:24px;display:flex;align-items:center;justify-content:space-around;padding:0 8px;}
+.bn-item{display:flex;flex-direction:column;align-items:center;gap:4px;color:#fff;cursor:pointer;opacity:.85;transition:.2s;}
+.bn-item.active{opacity:1;}
+.bn-item i{width:28px;height:28px;}
+.bn-center{position:relative;top:-18px;}
+.bn-center .center-btn{width:60px;height:60px;border-radius:18px;background:var(--yellow);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(0,0,0,.2);cursor:pointer;}
+.bn-center .center-btn i{color:var(--navy);width:30px;height:30px;}
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);background:#0F172A;color:#fff;padding:12px 20px;border-radius:12px;font-size:13px;font-weight:500;opacity:0;transition:.3s;pointer-events:none;z-index:100;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="status"><span>9:41</span><div class="icons"><i data-lucide="wifi" style="width:16px;height:16px;color:#fff;"></i><i data-lucide="battery-full" style="width:20px;height:20px;color:#fff;"></i></div></div>
+  <div class="screen">
+    <!-- Header -->
+    <div class="header">
+      <div class="header-left">
+        <div class="hamburger" onclick="toast('Menu')"><span></span><span></span><span></span></div>
+        <div class="greeting"><div class="welcome">Welcome!</div><div class="name">Atilio</div></div>
+      </div>
+      <div class="header-right">
+        <i data-lucide="bell" onclick="toast('Notifications')"></i>
+        <i data-lucide="search" onclick="toast('Search')"></i>
+      </div>
+    </div>
+    <!-- Hero balance card -->
+    <div class="hero">
+      <div class="logo">Mixx <span class="by">By Yas</span></div>
+      <div class="balance-label">Available balance</div>
+      <div class="balance-amount" id="balance">Tsh 100,000</div>
+      <div class="actions">
+        <button onclick="toast('Send money')" title="Send"><i data-lucide="arrow-right"></i></button>
+        <button onclick="toast('Refresh')" title="Refresh"><i data-lucide="refresh-cw"></i></button>
+        <button onclick="toggleBalance()" title="Hide balance"><i data-lucide="eye-off" id="eyeIcon"></i></button>
+      </div>
+    </div>
+    <!-- Carousel dots -->
+    <div class="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+    <!-- Service grid row 1 -->
+    <div class="section-title">Services</div>
+    <div class="grid">
+      <div class="tile" onclick="toast('Send Money')"><div class="tile-box"><i data-lucide="send"></i></div><div class="tile-label">Send Money</div></div>
+      <div class="tile" onclick="toast('Mobile Shop')"><div class="tile-box"><i data-lucide="smartphone"></i></div><div class="tile-label">Mobile Shop</div></div>
+      <div class="tile" onclick="toast('Cash Out')"><div class="tile-box"><i data-lucide="banknote"></i></div><div class="tile-label">Cash Out</div></div>
+      <div class="tile" onclick="toast('Banking')"><div class="tile-box"><i data-lucide="building-2"></i></div><div class="tile-label">Banking</div></div>
+    </div>
+    <!-- Promo banner -->
+    <div class="banner">
+      <div class="banner-left"><div class="small">Get 5 times</div><div class="big">Mixx</div><div class="med">Points</div></div>
+      <div class="banner-right"><img src="https://picsum.photos/seed/promo/400/200" alt=""></div>
+    </div>
+    <!-- Row 2 -->
+    <div class="grid">
+      <div class="tile" onclick="toast('Cards')"><div class="tile-box"><i data-lucide="credit-card"></i></div><div class="tile-label">Cards</div></div>
+      <div class="tile" onclick="toast('Bill Payments')"><div class="tile-box"><i data-lucide="receipt"></i></div><div class="tile-label">Bill Payments</div></div>
+      <div class="tile" onclick="toast('International Remittance')"><div class="tile-box"><i data-lucide="globe"></i></div><div class="tile-label">International Remittance</div></div>
+      <div class="tile" onclick="toast('Loans')"><div class="tile-box"><i data-lucide="hand-coins"></i></div><div class="tile-label">Loans</div></div>
+    </div>
+    <!-- Row 3 -->
+    <div class="grid">
+      <div class="tile" onclick="toast('IPO')"><div class="tile-box"><i data-lucide="trending-up"></i></div><div class="tile-label">IPO</div></div>
+      <div class="tile" onclick="toast('Lipa Kwa Simu')"><div class="tile-box"><i data-lucide="qr-code"></i></div><div class="tile-label">Lipa Kwa Simu</div></div>
+      <div class="tile" onclick="toast('Insurance')"><div class="tile-box"><i data-lucide="shield"></i></div><div class="tile-label">Insurance</div></div>
+      <div class="tile" onclick="toast('My Savings')"><div class="tile-box"><i data-lucide="piggy-bank"></i></div><div class="tile-label">My Savings</div></div>
+    </div>
+  </div>
+  <!-- Bottom nav -->
+  <div class="bottomnav">
+    <div class="bn-item active" onclick="toast('Home')"><i data-lucide="home"></i></div>
+    <div class="bn-item" onclick="toast('Phone')"><i data-lucide="phone"></i></div>
+    <div class="bn-center"><div class="center-btn" onclick="toast('Scan QR')"><i data-lucide="scan"></i></div></div>
+    <div class="bn-item" onclick="toast('Support')"><i data-lucide="headphones"></i></div>
+    <div class="bn-item" onclick="toast('Profile')"><i data-lucide="user"></i></div>
+  </div>
+  <div class="toast" id="toast"></div>
+</div>
+<script>
+lucide.createIcons();
+let hidden=false;
+function toggleBalance(){
+  const el=document.getElementById('balance');
+  const icon=document.getElementById('eyeIcon');
+  hidden=!hidden;
+  el.textContent = hidden ? '••••••' : 'Tsh 100,000';
+  icon.setAttribute('data-lucide', hidden ? 'eye' : 'eye-off');
+  lucide.createIcons();
+}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window._t);window._t=setTimeout(()=>t.classList.remove('show'),2000);}
+</script>
+</body>
+</html>
